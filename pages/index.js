@@ -1,7 +1,11 @@
 import Head from 'next/head';
 import { Product, HeroBanner, FooterBanner } from '../components';
+import apolloClient from '../lib/graphql/apolloClient';
+import { GET_POSTS, GET_BANNERS } from '../lib/graphql/graphcms/queries';
 
-export default function Home() {
+export default function Home({ products, banners }) {
+   // console.log('productsData', products);
+   // console.log('bannersData', banners);
    return (
       <div>
          <Head>
@@ -19,12 +23,27 @@ export default function Home() {
             </div>
 
             <div className='flex flex-wrap justify-center gap-4 mt-5 w-full'>
-               {['Product 1', 'Product 2'].map((product) => product)}
+               {products.map((product) => product.name)}
             </div>
 
-            <FooterBanner /> 
+            <FooterBanner />
          </>
 
       </div>
    )
+}
+
+export const getServerSideProps = async () => {
+
+   const res_products = await apolloClient.query({ query: GET_POSTS });
+   const products = res_products.data.products;
+
+   const res_banners = await apolloClient.query({ query: GET_BANNERS });
+   const banners = res_banners.data.banners;
+   return {
+      props: {
+         products,
+         banners
+      }
+   }
 }

@@ -16,7 +16,10 @@ const HeroBanner = () => {
                   >BUTTON TEXT</button>
                </Link>
 
-
+               <div className="absolute right-16 bottom-5 w-80 leading-4 flex flex-col text-[#324d67]">
+                  <h5 className="mb-3 font-bold text-base self-end">Description</h5>
+                  <p className="text-[#5f5f5f] text-right">DESCRIPTION</p>
+               </div>
             </div>
          </div>
       </div>
