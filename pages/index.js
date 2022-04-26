@@ -43,7 +43,7 @@ export const getServerSideProps = async () => {
    const products = res_products.data.products;
 
    const res_banners = await apolloClient.query({ query: GET_BANNERS });
-   const banners = res_banners.data.banners;
+   const banners = res_banners.data.banners
 
    //console.log('Products Data: ', products);
    //console.log('Banners Data: ', banners);
